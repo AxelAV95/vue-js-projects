@@ -1,0 +1,358 @@
+<!-- <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Práctica Vue 2 - v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+      }
+      .container {
+        display: flex;
+        gap: 40px;
+      }
+
+      /* Estilos del Formulario */
+      .panel-form {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      /* Estilos de la Tarjeta (Vista Previa) */
+      .card-preview {
+        width: 300px;
+        height: 180px;
+        border-radius: 15px;
+        color: white;
+        padding: 20px;
+        position: relative;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .card-name {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 0;
+      }
+      .card-dept {
+        font-size: 0.9em;
+        opacity: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8em;
+      }
+
+      /* Estilos del Componente Hijo (Botones de Nivel) */
+      .btn-group {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+      .btn-nivel {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        background: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.2s;
+      }
+      .btn-nivel.active {
+        background: #333;
+        color: white;
+        border-color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <div class="panel-form">
+        <h2>Configuración</h2>
+
+        <label for="Nombre empleado">Nombre del empleado: </label>
+        <input type="text" v-model.trim="empleado.nombre" placeholder="" />
+
+        <label for="">Departamento</label>
+        <select v-model="empleado.departament" name="" id="">
+          <option value="" disabled>Seleccione departamento</option>
+          <option value="Ventas">Ventas</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Desarrollo">Desarrollo</option>
+          <option value="Recursos Humanos">Recursos Humanos</option>
+        </select>
+
+        <label for="">Nivel de seguridad: </label>
+        <selector-nivel v-model="empleado.nivel"></selector-nivel>
+        <hr />
+        <label for="">
+          <input type="checkbox" v-model="empleado.activo" />
+          Tarjeta activa
+        </label>
+      </div>
+
+      <div class="preview-area">
+        <h2>Vista previa</h2>
+
+        <div class="card-preview" :style="estiloTarjeta">
+          <div class="" card-header>
+            <span class="badge">NIVEL {{empleado.nivel}}</span>
+            <span v-if="empleado.activo"></span>
+            <span v-else>X</span>
+          </div>
+
+          <div class="card-footer">
+            <small>ID: 9823-B</small>
+            <small>EXP: 2026</small>
+          </div>
+        </div>
+      </div>
+      <p
+        style="margin-top: 10px; color: #666; font-size: 0.9em"
+        v-if="!empleado.activo"
+      >
+        ⚠️ Esta tarjeta está desactivada y no abrirá puertas.
+      </p>
+    </div>
+
+    <script>
+      Vue.component("selector-nivel", {
+        props: ["value"],
+        template: `
+                <div class="btn-group">
+                    <button 
+                        v-for="i in 3" 
+                        :key="i"
+                        class="btn-nivel"
+                        :class="{ active: value === i }" 
+                        @click="$emit('input', i)"
+                    >
+                        Nivel {{ i }}
+                    </button>
+                </div>
+            `,
+        // @click="$emit('input', i)" -> Esto es la CLAVE de v-model personalizado
+      });
+
+      var app = new Vue({
+        el: "#app",
+        data: {
+          empleado: {
+            nombre: "",
+            departament: "",
+            nivel: 1,
+            activo: true,
+          },
+        },
+        computed: {
+          estiloTarjeta: function () {
+            if (!this.empleado.activo) return { background: "#95a5a6" }; // Gris si está inactivo
+
+            switch (this.empleado.nivel) {
+              case 1:
+                return {
+                  background: "linear-gradient(135deg, #42b983, #2c3e50)",
+                }; // Verde
+              case 2:
+                return {
+                  background: "linear-gradient(135deg, #3498db, #2c3e50)",
+                }; // Azul
+              case 3:
+                return {
+                  background: "linear-gradient(135deg, #e74c3c, #c0392b)",
+                }; // Rojo
+              default:
+                return { background: "#333" };
+            }
+          },
+        },
+        methods: {
+          // AQUÍ IRÁN NUESTRAS FUNCIONES
+        },
+      });
+    </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafío Final Vue 2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding-top: 50px; }
+        .container { display: flex; gap: 40px; }
+        
+        /* Estilos del Formulario */
+        .panel-form { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 300px; }
+        input, select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; color: #555; }
+        
+        /* Estilos de la Tarjeta (Vista Previa) */
+        .card-preview { width: 300px; height: 180px; border-radius: 15px; color: white; padding: 20px; position: relative; transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        
+        .card-header { display: flex; justify-content: space-between; align-items: center; }
+        .card-name { font-size: 1.4em; font-weight: bold; margin: 0; }
+        .card-dept { font-size: 0.9em; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .badge { background: rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 20px; font-size: 0.8em; }
+        
+        /* Estilos del Componente Hijo (Botones de Nivel) */
+        .btn-group { display: flex; gap: 5px; margin-bottom: 15px; }
+        .btn-nivel { flex: 1; padding: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; border-radius: 4px; transition: 0.2s; }
+        .btn-nivel.active { background: #333; color: white; border-color: #333; }
+        
+    </style>
+</head>
+<body>
+
+    <div id="app" class="container">
+        
+        <div class="panel-form">
+            <h2>🛠 Configuración</h2>
+
+            <label>Nombre del empleado:</label>
+            <input type="text" v-model.trim="empleado.nombre" placeholder="Nombre completo">
+
+            <label>Departamento:</label>
+            <select v-model="empleado.departamento">
+                <option disabled value="">Seleccione...</option>
+                <option>Ingeniería</option>
+                <option>Diseño</option>
+                <option>Marketing</option>
+                <option>Ventas</option>
+            </select>
+
+            <label>Nivel de seguridad:</label>
+            <selector-nivel v-model="empleado.nivel"></selector-nivel>
+
+            <hr>
+
+            <label>
+                <input type="checkbox" v-model="empleado.activo">
+                Tarjeta Activa
+            </label>
+        </div>
+
+        <div class="preview-area">
+            <h2>💳 Vista previa</h2>
+            
+            <div class="card-preview" :style="estiloTarjeta">
+                
+                <div class="card-header">
+                    <span class="badge">NIVEL {{ empleado.nivel }}</span>
+                    <span v-if="empleado.activo">✅</span>
+                    <span v-else>❌</span>
+                </div>
+
+                <div>
+                    <h1 class="card-name">{{ empleado.nombre || 'Nombre...' }}</h1>
+                    <p class="card-dept">{{ empleado.departamento || 'DEPTO...' }}</p>
+                </div>
+
+                <div class="card-footer">
+                    <small>ID: 9823-B</small>
+                    <small>EXP: 2026</small>
+                </div>
+
+            </div>
+            
+            <p style="margin-top: 10px; color: #666; font-size: 0.9em;" v-if="!empleado.activo">
+                ⚠️ Esta tarjeta está desactivada y no abrirá puertas.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // --- COMPONENTE HIJO ---
+        // Este componente dibuja 3 botones. Al hacer click, emite el valor al padre.
+        Vue.component('selector-nivel', {
+            props: ['value'], // Recibe el 'nivel' del padre
+            template: `
+                <div class="btn-group">
+                    <button 
+                        v-for="i in 3" 
+                        :key="i"
+                        class="btn-nivel"
+                        :class="{ active: value === i }" 
+                        @click="$emit('input', i)"
+                    >
+                        Nivel {{ i }}
+                    </button>
+                </div>
+            `
+            // @click="$emit('input', i)" -> Esto es la CLAVE de v-model personalizado
+        });
+
+        // --- INSTANCIA PADRE ---
+        var app = new Vue({
+            el: '#app',
+            data: {
+                empleado: {
+                    nombre: '',
+                    departamento: '',
+                    nivel: 1,      // Valor inicial del componente hijo
+                    activo: true   // Checkbox activado por defecto
+                }
+            },
+            computed: {
+                // Cambia el color de fondo de la tarjeta según el nivel seleccionado
+                estiloTarjeta: function() {
+                    if (!this.empleado.activo) return { background: '#95a5a6' }; // Gris si está inactivo
+
+                    switch(this.empleado.nivel) {
+                        case 1: return { background: 'linear-gradient(135deg, #42b983, #2c3e50)' }; // Verde
+                        case 2: return { background: 'linear-gradient(135deg, #3498db, #2c3e50)' }; // Azul
+                        case 3: return { background: 'linear-gradient(135deg, #e74c3c, #c0392b)' }; // Rojo
+                        default: return { background: '#333' };
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

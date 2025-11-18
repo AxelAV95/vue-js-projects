@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Práctica Vue 2 - v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+      input,
+      select,
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        cursor: pointer;
+        padding: 8px 15px;
+        background: #42b983;
+        color: white;
+        border: none;
+      }
+      .resultado {
+        background: #f0f0f0;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Configuración de perfil</h1>
+
+      <div class="box">
+        <h3>Privacidad</h3>
+        <label for="">
+          <input type="checkbox" v-model="perfilPublico" />
+          Perfil público
+        </label>
+
+        <hr />
+        <h3>Tema de la interfaz</h3>
+        <label for="">
+          <input type="radio" value="claro" v-model="tema" />
+          Modo Claro
+        </label>
+        <br />
+        <label for="">
+          <input type="radio" value="oscuro" v-model="tema" />
+          Modo Oscuro
+        </label>
+        <hr />
+        <h3>Idioma</h3>
+        <select name="idioma" id="idioma" v-model="idioma">
+          <option disabled value="">Selecciona un idioma</option>
+          <option>Español</option>
+          <option>Inglés</option>
+          <option>Japonés</option>
+          <option>Coreano</option>
+        </select>
+      </div>
+
+      <div
+        class="resultado"
+        :style="{ background: tema === 'oscuro' ? '#333' : '#f0f0f0', color: tema === 'oscuro' ? '#fff' : '#000' }"
+      >
+        <h3>Lo que se enviaría al servidor:</h3>
+        <pre>{{ $data }}</pre>
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          perfilPublico: false,
+          tema: "claro",
+          idioma: "Español",
+        },
+        methods: {
+          // AQUÍ IRÁN NUESTRAS FUNCIONES
+        },
+      });
+    </script>
+  </body>
+</html>

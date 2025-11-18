@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Práctica Vue 2 - v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+      input,
+      select,
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        cursor: pointer;
+        padding: 8px 15px;
+        background: #42b983;
+        color: white;
+        border: none;
+      }
+      .resultado {
+        background: #f0f0f0;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Registro de nuevo usuario</h1>
+        <div class="box">
+            <label for="">Nombre de usuario (sin espacios extra): </label>
+            <input type="text" v-model.trim="usuario.nombre" placeholder="Escribe tu nombre de usuario">
+            <p v-if="usuario.nombre.length < 3 && usuario.nombre.length > 0" style="color:red;">
+                * El nombre es muy corto
+            </p>
+
+            <br>
+            <label for="edad">Edad (solo numeros)</label>
+            <input type="number" v-model.number="usuario.edad">
+            <p v-if="!esEdadValida" style="color: red; font-size: 0.8em">
+                * Debes ser mayor de edad (18+)
+            </p>
+
+            <button :disabled="!formularioValido" @click="enviarFormulario" :style="{opacity: formularioValido ? 1 : 0.5}">Registrar usuario</button>
+
+        </div>
+
+        <div class="resultado">
+            <h3>Datos limpios: </h3>
+            <p>Nombre: "{{usuario.nombre}}" (Longitud: {{usuario.nombre.length}})</p>
+            <p>Edad: {{usuario.edad}} (Tipo de dato: {{typeof usuario.edad}})</p>
+        </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          usuario: {
+            nombre: '',
+            edad: 0
+          }
+        },
+        computed: {
+            esEdadValida(){
+                return Number.isInteger(this.usuario.edad) && this.usuario.edad >= 18;
+            },
+            formularioValido(){
+                return this.usuario.nombre.length >= 3 && this.esEdadValida;
+            }
+        },
+        methods: {
+          enviarFormulario(){
+              alert("Usuario " + this.usuario.nombre + " registrado con éxito!");
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Práctica Vue 2 - v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+      input,
+      select,
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        cursor: pointer;
+        padding: 8px 15px;
+        background: #42b983;
+        color: white;
+        border: none;
+      }
+      .resultado {
+        background: #f0f0f0;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Componentes personalizados</h1>
+
+      <div class="box">
+        <p>
+          Este input de abajo NO es un input normal HTML. Es un componente
+          pequeño
+        </p>
+        <custom-input v-model="mensaje"> </custom-input>
+      </div>
+
+      <div class="resultado">
+        <h3>Variable en el Padre (#app)</h3>
+        <p>{{ mensaje }}</p>
+      </div>
+    </div>
+
+    <script>
+      // 1. Definimos el componente HIJO
+      Vue.component("custom-input", {
+        // El componente espera recibir una prop llamada 'value' (regla de v-model en Vue 2)
+        props: ["value"],
+
+        // El template define cómo se ve nuestro componente por dentro
+        template: `
+        <div style="background: #e3f2fd; padding: 15px; border: 2px dashed #2196f3; border-radius: 10px;">
+            <label>✍️ Escribe aquí:</label>
+            <input 
+                type="text" 
+                
+                
+                v-bind:value="value" 
+                
+                
+                v-on:input="$emit('input', $event.target.value)"
+                
+                style="width: 90%; padding: 8px; margin-top: 5px;"
+            >
+        </div>
+    `,
+      });
+
+      // 2. Instancia principal PADRE
+      var app = new Vue({
+        el: "#app",
+        data: {
+          mensaje: "Hola desde el padre, siu?",
+        },
+      });
+    </script>
+  </body>
+</html>

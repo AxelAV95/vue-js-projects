@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Práctica Vue 2 - v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 8px;
+      }
+      input,
+      select,
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+        padding: 5px;
+        width: 100%;
+        max-width: 300px;
+      }
+      button {
+        cursor: pointer;
+        padding: 8px 15px;
+        background: #42b983;
+        color: white;
+        border: none;
+      }
+      .resultado {
+        background: #f0f0f0;
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+        <h1>Catalogo de mangas</h1>
+        <div class="box">
+            <input type="text" v-model="busqueda" placeholder="Buscar manga...">
+            <p v-if="busqueda">Estás buscando: <strong>{{busqueda}} </strong></p>
+            <p v-else>Escribe algo para filtrar la lista...</p>
+        </div>
+
+        <ul>
+            <li v-for="manga in mangasFiltrados">
+                {{ manga }}
+            </li>
+        </ul>
+
+        <div v-if="mangasFiltrados.length === 0" class="resultado">
+            No se han encontrado mangas que coincidan con tu búsqueda.
+
+        </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          busqueda: '',
+          listaMangas:[
+            'Attack on Titan',
+            'Naruto',
+            'One Piece',
+            'Death Note',
+            'Fullmetal Alchemist',
+            'Dragon Ball',
+            'My Hero Academia',
+            'Demon Slayer',
+            'Jujutsu Kaisen',
+            'Tokyo Ghoul'
+          ]
+        },
+        computed: {
+            mangasFiltrados(){
+                var texto = this.busqueda.toLowerCase();
+
+                return this.listaMangas.filter((manga) =>{
+                    return manga.toLowerCase().includes(texto);
+                });
+            }
+        },
+        methods: {
+          // AQUÍ IRÁN NUESTRAS FUNCIONES
+        },
+      });
+    </script>
+  </body>
+</html>
