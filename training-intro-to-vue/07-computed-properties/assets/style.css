@@ -1,0 +1,39 @@
+/* assets/style.css */
+body { font-family: tahoma; color: #282828; margin: 0px; }
+
+.nav-bar {
+  background: linear-gradient(-90deg, #84CF6A, #16C0B0);
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.product { display: flex; flex-direction: row; padding: 1rem; }
+.product-image { width: 50%; }
+.product-image img { border: 1px solid #d8d8d8; width: 70%; margin: 40px; box-shadow: 0px .5px 1px #d8d8d8; }
+.product-info { margin-top: 10px; width: 50%; }
+
+/* ESTILOS PARA EL LAB DE HOY */
+.color-box {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+  margin-right: 5px;
+  display: inline-block; /* Para que se pongan uno al lado del otro */
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 30px;
+  border: none;
+  background-color: #1E95EA;
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-size: 14px;
+} 
+
+/* Esta es la clase que activaremos dinámicamente */
+.disabledButton {
+  background-color: #d8d8d8;
+  cursor: not-allowed;
+}

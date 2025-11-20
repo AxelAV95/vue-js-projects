@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 10 - Formularios</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="cart">
+            <p>Carrito({{ cart.length }})</p>
+        </div>
+        <product @add-to-cart="updateCart"></product>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>

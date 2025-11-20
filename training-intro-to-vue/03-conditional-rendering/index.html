@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 02 - Attribute Binding</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ product }}</h1>
+      <img v-bind:src="image" v-bind:alt="altText" />
+      
+      <p v-if="inventory > 10">
+        In Stock
+      </p>
+
+      <p v-else="inventory <= 10 && inventory > 0">
+        Almost sold out!
+      </p>
+
+      <p v-else>
+        Out of Stock    
+        </p>
+
+        <span v-show="inventory === 0"> Come back later </span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 04 - List Rendering</title>
+    <style>
+      .mi-imagen {
+        width: 200px;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ product }}</h1>
+      <img :src="image" :alt="altText" :width="imageWidth" />
+
+      <p v-if="inventory > 10">In Stock</p>
+
+      <p v-else="inventory <= 10 && inventory > 0">Almost sold out!</p>
+
+      <p v-else>Out of Stock</p>
+
+      <span v-show="inventory === 0"> Come back later </span>
+
+      <h3>Detalles</h3>
+      <ul>
+        <li v-for="detail in details">{{ detail }}</li>
+      </ul>
+
+      <h3>Colores disponibles</h3>
+      <div v-for="variant in variants" :key="variant.id">
+        {{ variant.color }}
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

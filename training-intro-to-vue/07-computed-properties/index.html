@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 07 - Computed Properties</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div class="nav-bar"></div>
+
+    <div id="app">
+      <div class="product">
+        <!-- Imagen -->
+        <div class="product-image">
+          <img :src="image" :alt="altText" />
+        </div>
+
+        <!-- Info del producto -->
+        <div class="product-info">
+          <h1>{{ title }}</h1>
+
+          <!-- Mensajes de stock -->
+          <p v-if="inStock > 10">In Stock</p>
+          <p v-else-if="inStock <= 10 && inStock > 0">Almost sold out!</p>
+          <p v-else>Out of Stock</p>
+
+          <span v-show="inStock === 0">Come back later</span>
+
+          <!-- Detalles -->
+          <h3>Details</h3>
+          <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+          </ul>
+
+          <!-- Variantes (colores) -->
+          <h3>Available Colors</h3>
+          <div
+            v-for="(variant, index) in variants"
+            :key="variant.id"
+            class="color-box"
+            :style="{ backgroundColor: variant.color }"
+            @mouseover="updateProduct(index)"
+          ></div>
+
+          <!-- Botón -->
+          <button
+            @click="addToCart"
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock }"
+          >
+            Add to Cart
+          </button>
+
+          <!-- Carrito -->
+          <div class="cart">
+            <p>Cart({{ cart }})</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

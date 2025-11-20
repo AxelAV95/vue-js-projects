@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 02 - Attribute Binding</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ product }}</h1>
+      <img v-bind:src="image" v-bind:alt="altText" />
+      <img :src="image" :alt="altText" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
