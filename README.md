@@ -1,99 +1,127 @@
-# Proyectos Vue y laboratorios — Resumen del repositorio
+# Proyectos Vue y Laboratorios — Resumen del repositorio
 
-Este repositorio agrupa varios proyectos y laboratorios enfocados en Vue.js, ejercicios prácticos y ejemplos frontend/backend. El objetivo de este `README` es dar una vista rápida y práctica de qué hay en la raíz y cómo arrancar cada proyecto o laboratorio.
+Este repositorio agrupa una colección de proyectos, laboratorios y ejemplos prácticos centrados en Vue.js y tecnologías relacionadas (Vite, Vue CLI, Vuetify, Vuex, Vue Router), además de un ejemplo de backend en Java/Spring Boot. Este `README` ofrece una descripción clara de cada proyecto presente en la raíz y pasos rápidos para ejecutarlos.
 
-**Estructura en la raíz**
-- **`directorio-componentes/`**: Proyecto Vue que actúa como catálogo de componentes reutilizables. Incluye ejemplos de componentes, configuración de Vue CLI y un `README.md` con pasos para ejecutar.
-- **`laboratorio-fundamentos/`**: Colección de ejercicios y prácticas básicas (cada ejercicio suele tener su propio `index.html`).
-- **`laboratorio-v-model/`**: Ejercicios numerados centrados en `v-model` y manejo de formularios en Vue. Cada subcarpeta contiene su propio `index.html` y ejemplo autocontenidos.
-- **`mi-primer-proyecto/`**: Proyecto Vue (plantilla con Vite). Contiene `package.json`, `vite.config.js`, `src/` y `public/`. Es una base para empezar proyectos más estructurados.
-- **`training-intro-to-vue/`**: Carpeta con lecciones estructuradas de introducción a Vue (por ejemplo `01-vue-instance`, `02-attribute-binding`, ..., `11-tabs`, etc.). Ideal para repasar conceptos básicos paso a paso.
-- **`training-vuetify/`**: Ejercicios y ejemplos centrados en Vuetify (UI library). Actualmente contiene un ejemplo `event-dashboard`.
-- **`vuegridpro/`**: Proyecto dividido en backend y frontend:
-  - `vuegridpro/backend/`: Servicio Java/Spring Boot (con Maven y `mvnw` wrappers).
-  - `vuegridpro/frontend/`: Aplicación frontend en Vue (tiene `package.json` y configuración típica de Vue).
+## Proyectos y carpetas en la raíz
 
-**Archivos y carpetas internas**
-- Revisa dentro de cada carpeta por `README.md` específicos (si existen) y por ficheros de configuración como `package.json`, `pom.xml` o `vite.config.js`.
+- `directorio-componentes/` — Catálogo de componentes Vue
+  - Propósito: Biblioteca y ejemplos de componentes reutilizables construidos con Vue (proyecto creado con Vue CLI).
+  - Contenido clave: `src/` con componentes, `public/`, `package.json`, `README.md`.
+  - Ejecutar:
 
-**Descripción detallada de proyectos y carpetas nuevas**
-- `directorio-componentes/`:
-  - Propósito: Catálogo de componentes reutilizables en Vue. Sirve como referencia práctica para extraer y reusar componentes en otros proyectos.
-  - Ejecución: `cd directorio-componentes` → `npm install` → `npm run serve`.
-  - Notas: Contiene `README.md` con los scripts típicos de un proyecto creado con Vue CLI.
+```cmd
+cd "directorio-componentes"
+npm install
+npm run serve
+```
 
-- `training-intro-to-vue/`:
-  - Propósito: Curso/colección de lecciones para aprender los fundamentos de Vue de forma progresiva.
-  - Contenido (lecciones):
-    - `01-vue-instance` — Instancia de Vue y ciclo básico.
-    - `02-attribute-binding` — Enlace de atributos.
-    - `03-conditional-rendering` — Renderizado condicional.
-    - `04-list-rendering` — Renderizado de listas.
-    - `05-event-handling` — Manejo de eventos.
-    - `06-class-and-style-binding` — Enlace de clases y estilos.
-    - `07-computed-properties` — Propiedades computadas.
-    - `08-components` — Creación y uso de componentes.
-    - `09-communicating-events` — Comunicación entre componentes via eventos.
-    - `10-forms` — Formularios y `v-model`.
-    - `11-tabs` — Ejemplo de pestañas.
-    - `sock-shop` — Ejemplo práctico o plantilla relacionada (revisar carpeta para detalles).
-  - Ejecución: Muchas lecciones son estáticas (`index.html`) — puedes abrirlas en el navegador o servir la lección con un servidor estático.
-    - Ejemplo (desde la raíz del repo):
+- `laboratorio-fundamentos/` — Ejercicios básicos
+  - Propósito: Ejercicios y recursos introductorios; incluye ejemplos estáticos y, dentro de esta carpeta, el ejemplo `mangahook-api`.
+  - Contenido clave: `index.html` y la subcarpeta `mangahook-api/` (API de ejemplo basada en Node/Express).
+  - Ejecutar `mangahook-api` (si tiene `package.json` en `server/`):
+
+```cmd
+cd "laboratorio-fundamentos/mangahook-api/server"
+npm install
+npm run start   # o `node app.js` si no hay script
+```
+
+- `laboratorio-v-model/` — Ejercicios con `v-model`
+  - Propósito: Pequeños ejercicios numerados para practicar `v-model`, formularios y binding.
+  - Contenido clave: subcarpetas como `1-login`, `2-filtros-buscador`, `3-checkboxes-selects`, `4-validacion-modificadores`, `5-componentes-reutilizables`, `6-desafio-credenciales`, `plantilla-base`.
+  - Ejecutar: normalmente cada ejercicio incluye `index.html`; abre en el navegador o usa un servidor estático.
+
+- `mi-primer-proyecto/` — Plantilla Vite + Vue
+  - Propósito: Proyecto base con Vite para iniciar aplicaciones con Vue 3.
+  - Contenido clave: `package.json`, `vite.config.js`, `src/`, `public/`, `README.md` con instrucciones.
+  - Ejecutar:
+
+```cmd
+cd mi-primer-proyecto
+npm install
+npm run dev
+```
+
+- `training-intro-to-vue/` — Lecciones paso a paso de Vue
+  - Propósito: Curso práctico con lecciones independientes para aprender Vue desde cero.
+  - Lecciones incluidas (ejemplos):
+    - `01-vue-instance`
+    - `02-attribute-binding`
+    - `03-conditional-rendering`
+    - `04-list-rendering`
+    - `05-event-handling`
+    - `06-class-and-style-binding`
+    - `07-computed-properties`
+    - `08-components`
+    - `09-communicating-events`
+    - `10-forms`
+    - `11-tabs`
+    - `sock-shop` (ejemplo práctico)
+  - Ejecutar: muchas lecciones son estáticas (`index.html`) — abre directamente o usa `npx serve`:
 
 ```cmd
 npx serve "training-intro-to-vue/01-vue-instance"
 ```
 
-  - Notas: Algunas lecciones pueden ser proyectos Vue completos; en esos casos, entra en la subcarpeta y ejecuta `npm install` y `npm run serve`.
+- `training-vue-router/` — Ejemplos con Vue Router
+  - Propósito: Proyectos que demuestran enrutado en Vue (creados con Vue CLI o Vite según el caso).
+  - Ejecutar:
 
-- `training-vuetify/`:
-  - Propósito: Ejercicios y ejemplos con Vuetify (framework de UI para Vue).
-  - Contenido: `event-dashboard` — ejemplo que muestra un dashboard de eventos usando Vuetify.
-  - Ejecución: `cd training-vuetify/event-dashboard` → `npm install` → `npm run serve`.
-
-
-**Cómo ejecutar los proyectos (resumen rápido)**
-- `directorio-componentes` (Vue CLI):
-  - `cd directorio-componentes`
-  - `npm install`
-  - `npm run serve` (o `npm run dev` si está disponible)
-
-- `mi-primer-proyecto` (Vite + Vue):
-  - `cd mi-primer-proyecto`
-  - `npm install`
-  - `npm run dev`
-
-- `training-intro-to-vue` (lecciones):
-  - Cada subcarpeta es una lección o mini-proyecto. En muchos casos basta con abrir el `index.html` en el navegador o servir la lección con un servidor estático:
-
-```
-npx serve <ruta-a-la-leccion>
+```cmd
+cd training-vue-router
+npm install
+npm run serve
 ```
 
-  - Para lecciones que son proyectos Vue, entra en la subcarpeta y sigue los pasos habituales (`npm install` / `npm run serve`).
+- `training-vuetify/` — Ejemplos con Vuetify
+  - Propósito: Ejercicios que muestran cómo usar Vuetify (UI library) en proyectos Vue.
+  - Contenido típico: `event-dashboard`.
+  - Ejecutar:
 
-- `training-vuetify/event-dashboard` (Vuetify example):
-  - `cd training-vuetify/event-dashboard`
-  - `npm install`
-  - `npm run serve`
+```cmd
+cd training-vuetify/event-dashboard
+npm install
+npm run serve
+```
 
-- `vuegridpro/backend` (Java / Maven — Windows):
-  - `cd vuegridpro/backend`
-  - Ejecutar con wrapper (Windows): `mvnw.cmd spring-boot:run` o con PowerShell `./mvnw.cmd spring-boot:run`
-  - O con Maven instalado: `mvn spring-boot:run`
+- `training-vuex/` — Ejemplos con Vuex (manejo de estado)
+  - Propósito: Demostraciones del uso de Vuex para estado global en aplicaciones Vue.
+  - Ejecutar:
 
-- `vuegridpro/frontend` (Vue):
-  - `cd vuegridpro/frontend`
-  - `npm install`
-  - `npm run serve` o `npm run dev` (según el `package.json`)
+```cmd
+cd training-vuex
+npm install
+npm run serve
+```
 
-**Notas prácticas**
-- En Windows, ejecuta el wrapper Maven con `mvnw.cmd` desde `cmd.exe` o `./mvnw.cmd` desde PowerShell.
-- Si un proyecto no tiene scripts en `package.json`, puedes ejecutar el archivo principal con `node <archivo>` (por ejemplo `node app.js`) o inspeccionar el `package.json` para ver los scripts disponibles.
-- Revisa los `README.md` locales dentro de cada subcarpeta para instrucciones específicas o variables de entorno necesarias.
+- `vuegridpro/` — Proyecto completo (Frontend + Backend)
+  - Propósito: Componente/solución escalable tipo Data Grid para manejar grandes volúmenes de datos, con backend en Spring Boot y frontend en Vue.
+  - Contenido clave:
+    - `backend/` — Servicio Java (Spring Boot) con endpoints paginados y filtros.
+    - `frontend/` — Aplicación Vue 2 con `ReusableGrid.vue`.
+  - Ejecutar backend (Windows):
 
-**Contribuciones**
-- Para añadir un nuevo ejercicio, crea una carpeta clara y autocontenida (por ejemplo `7-nombre-del-ejercicio/`) y añade un `README.md` con instrucciones si es necesario.
+```cmd
+cd vuegridpro/backend
+mvnw.cmd spring-boot:run
+```
 
----
-Este `README.md` ofrece una descripción general; abre las carpetas indicadas para ver instrucciones y archivos específicos de cada proyecto.
+  - Ejecutar frontend:
+
+```cmd
+cd vuegridpro/frontend
+npm install
+npm run serve
+```
+
+## Notas generales y recomendaciones
+
+- Revisa el `README.md` y `package.json` dentro de cada subcarpeta para scripts y dependencias específicas; muchos proyectos creados con Vue CLI incluyen un `README.md` con instrucciones.
+- En Windows, ejecuta wrappers Maven con `mvnw.cmd` desde `cmd.exe` o `./mvnw.cmd` desde PowerShell.
+- Para proyectos estáticos (ej. ejercicios con `index.html`) puedes abrir el archivo directamente en el navegador o usar `npx serve` / `npx http-server`.
+
+## Contribuciones y organización
+
+- Para añadir nuevos ejercicios o proyectos: crea una carpeta descriptiva, añade un `README.md` con pasos para ejecutar y lista de dependencias.
+- Mantén la convención de separar ejercicios estáticos (HTML) y proyectos con `package.json` (Vue CLI / Vite).
+
