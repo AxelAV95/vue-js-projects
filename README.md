@@ -16,6 +16,42 @@ Este repositorio agrupa varios proyectos y laboratorios enfocados en Vue.js, eje
 **Archivos y carpetas internas**
 - Revisa dentro de cada carpeta por `README.md` específicos (si existen) y por ficheros de configuración como `package.json`, `pom.xml` o `vite.config.js`.
 
+**Descripción detallada de proyectos y carpetas nuevas**
+- `directorio-componentes/`:
+  - Propósito: Catálogo de componentes reutilizables en Vue. Sirve como referencia práctica para extraer y reusar componentes en otros proyectos.
+  - Ejecución: `cd directorio-componentes` → `npm install` → `npm run serve`.
+  - Notas: Contiene `README.md` con los scripts típicos de un proyecto creado con Vue CLI.
+
+- `training-intro-to-vue/`:
+  - Propósito: Curso/colección de lecciones para aprender los fundamentos de Vue de forma progresiva.
+  - Contenido (lecciones):
+    - `01-vue-instance` — Instancia de Vue y ciclo básico.
+    - `02-attribute-binding` — Enlace de atributos.
+    - `03-conditional-rendering` — Renderizado condicional.
+    - `04-list-rendering` — Renderizado de listas.
+    - `05-event-handling` — Manejo de eventos.
+    - `06-class-and-style-binding` — Enlace de clases y estilos.
+    - `07-computed-properties` — Propiedades computadas.
+    - `08-components` — Creación y uso de componentes.
+    - `09-communicating-events` — Comunicación entre componentes via eventos.
+    - `10-forms` — Formularios y `v-model`.
+    - `11-tabs` — Ejemplo de pestañas.
+    - `sock-shop` — Ejemplo práctico o plantilla relacionada (revisar carpeta para detalles).
+  - Ejecución: Muchas lecciones son estáticas (`index.html`) — puedes abrirlas en el navegador o servir la lección con un servidor estático.
+    - Ejemplo (desde la raíz del repo):
+
+```cmd
+npx serve "training-intro-to-vue/01-vue-instance"
+```
+
+  - Notas: Algunas lecciones pueden ser proyectos Vue completos; en esos casos, entra en la subcarpeta y ejecuta `npm install` y `npm run serve`.
+
+- `training-vuetify/`:
+  - Propósito: Ejercicios y ejemplos con Vuetify (framework de UI para Vue).
+  - Contenido: `event-dashboard` — ejemplo que muestra un dashboard de eventos usando Vuetify.
+  - Ejecución: `cd training-vuetify/event-dashboard` → `npm install` → `npm run serve`.
+
+
 **Cómo ejecutar los proyectos (resumen rápido)**
 - `directorio-componentes` (Vue CLI):
   - `cd directorio-componentes`
